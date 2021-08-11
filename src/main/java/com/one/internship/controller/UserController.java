@@ -23,16 +23,4 @@ public class UserController {
         usersList.add(user);
     }
 
-    @DeleteMapping("/users/{id}")
-    public void deleteUser(@PathVariable("id") Long id) {
-        Iterator<User> userList = usersList.iterator();
-        while (userList.hasNext()) {
-            User user = userList.next();
-            if (user.getId().equals(id)) {
-                userList.remove();
-                break;
-            }
-        }
-    }
-
 }
