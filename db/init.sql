@@ -17,4 +17,15 @@ create table notes (
     category_id int not null,
     owner_id int not null,
     note text
+    Primary key (id)
+    CONSTRAINT fk_categories
+    Foreign key (owner_id) REFERENCES notes(owner_id)
+    Foreign key (owner_id) REFERENCES categories (owner_id)
+    ON DELETE CASCADE;
+
+    Primary key (category_id)
+    CONSTRAINT fk_notes
+    Foreign key (category_id) REFERENCES notes (category_id)
+    ON DELETE CASCADE
 );
+
