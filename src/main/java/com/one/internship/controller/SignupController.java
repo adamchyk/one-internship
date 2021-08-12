@@ -46,7 +46,6 @@ public class SignupController {
                     .badRequest()
                     .body(new MessageResponse("Error: Username is not valid!"));
         }
-
         return ResponseEntity.ok(new MessageResponse("ok"));
     }
 
