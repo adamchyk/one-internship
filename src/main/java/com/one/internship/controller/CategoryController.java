@@ -20,12 +20,12 @@ public class CategoryController {
 
     @PostMapping("/categories")
     public void addCategories(@RequestBody Category category){
-        category.setCategoryId((long) (categoriesList.size() + 1));
+        category.setCategoryId((Integer) (categoriesList.size() + 1));
         categoriesList.add(category);
     }
 
     @DeleteMapping("/categories/{id}")
-    public void deleteUser(@PathVariable("id") Long categoryId) {
+    public void deleteUser(@PathVariable("id") Integer categoryId) {
         Iterator<Category> categoriesList = getCategories().listIterator();
         while (categoriesList.hasNext()) {
             Category category = categoriesList.next();

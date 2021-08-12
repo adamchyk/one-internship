@@ -19,7 +19,7 @@ public class UserController {
 
     @PostMapping("/users")
     public void addUser(@RequestBody User user) {
-        user.setId((long) (usersList.size() + 1));
+        user.setId((Integer) (usersList.size() + 1));
         usersList.add(user);
     }
 

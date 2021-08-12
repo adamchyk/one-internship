@@ -20,12 +20,12 @@ public class NotesController {
 
     @PostMapping("/notes")
     public void addNotes(@RequestBody Note note){
-        note.setNoteId((long) (notesList.size() + 1));
+        note.setNoteId((Integer) (notesList.size() + 1));
         notesList.add(note);
     }
 
     @DeleteMapping("/notes/{id}")
-    public void deleteUser(@PathVariable("id") Long noteId) {
+    public void deleteUser(@PathVariable("id") Integer noteId) {
         Iterator<Note> notesList = getNotes().listIterator();
         while (notesList.hasNext()) {
             Note note = notesList.next();

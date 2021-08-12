@@ -9,20 +9,20 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
-    private Long categoryId;
+    private Integer categoryId;
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private User owner;
 
     @Column(nullable = false, length = 20)
-    private Long name;
+    private String name;
 
-    public Long getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Long categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -34,11 +34,11 @@ public class Category {
         this.owner = owner;
     }
 
-    public Long getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Long name) {
+    public void setName(String name) {
         this.name = name;
     }
 

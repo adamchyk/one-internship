@@ -8,7 +8,7 @@ public class Note {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long noteId;
+    private Integer noteId;
 
     @OneToOne
     @JoinColumn(name = "category_id")
@@ -21,11 +21,11 @@ public class Note {
     @Column(nullable = false, length = 20)
     private String note;
 
-    public Long getNoteId() {
+    public Integer getNoteId() {
         return noteId;
     }
 
-    public void setNoteId(Long noteId) {
+    public void setNoteId(Integer noteId) {
         this.noteId = noteId;
     }
 
