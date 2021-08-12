@@ -1,4 +1,4 @@
-package com.one.internship.model;
+package com.one.internship.entity;
 
 import javax.persistence.*;
 
@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Note {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer noteId;
 
     @OneToOne

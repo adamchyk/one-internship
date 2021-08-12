@@ -1,7 +1,6 @@
 package com.one.internship.controller;
 
-import com.one.internship.model.Category;
-import com.one.internship.model.Note;
+import com.one.internship.entity.Category;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
