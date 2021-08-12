@@ -38,12 +38,20 @@ public class User {
         this.isAdmin = is_admin;
     }
 
-    public boolean isIsAccountEnabled() {
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
+    public boolean isAccountEnabled() {
         return isAccountEnabled;
     }
 
-    public void setIsAccountEnabled(boolean account_enable) {
-        this.isAccountEnabled = account_enable;
+    public void setAccountEnabled(boolean accountEnabled) {
+        isAccountEnabled = accountEnabled;
     }
 
     public String getUsername() {

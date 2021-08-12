@@ -1,38 +1,53 @@
 package com.one.internship.controller;
 
 import com.one.internship.entity.Category;
+import com.one.internship.entity.User;
+import com.one.internship.model.CategoryInfo;
+import com.one.internship.model.CreateCategoryRequest;
+import com.one.internship.model.UserInfo;
+import com.one.internship.repository.CategoryRepository;
+import com.one.internship.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @RestController
 public class CategoryController {
 
-    List<Category> categoriesList = new ArrayList<>();
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/categories")
-    public List<Category> getCategories() {
-        return categoriesList;
+    public List<CategoryInfo> getCategories() {
+        List<CategoryInfo> categoryInfos = new ArrayList<>();
+        List<Category> categoryList = categoryRepository.findAll();
+        for (int i = 0; i < categoryList.size(); i++){
+            CategoryInfo categoryInfo = new CategoryInfo();
+            categoryInfo.setId(categoryList.get(i).getCategoryId());
+            categoryInfo.setName(categoryList.get(i).getName());
+            categoryInfos.add(categoryInfo);
+        }
+        return categoryInfos;
     }
 
     @PostMapping("/categories")
-    public void addCategories(@RequestBody Category category){
-        category.setCategoryId((Integer) (categoriesList.size() + 1));
-        categoriesList.add(category);
+    public void addCategorys(@RequestBody CreateCategoryRequest category) {
+        Category newCategory = new Category();
+        newCategory.setName(category.getName());
+        User u = userRepository.findById(category.getOwnerId()).get();
+        newCategory.setOwner(u);
+        categoryRepository.save(newCategory);
     }
 
     @DeleteMapping("/categories/{id}")
-    public void deleteUser(@PathVariable("id") Integer categoryId) {
-        Iterator<Category> categoriesList = getCategories().listIterator();
-        while (categoriesList.hasNext()) {
-            Category category = categoriesList.next();
-            if (category.getCategoryId().equals(categoryId)) {
-                categoriesList.remove();
-                break;
-            }
-        }
+    public void deleteCategorys(@PathVariable("id") Integer noteId) {
+        categoryRepository.deleteById(noteId);
     }
 
 }

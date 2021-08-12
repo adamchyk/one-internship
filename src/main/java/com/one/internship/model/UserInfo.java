@@ -6,6 +6,15 @@ public class UserInfo {
     private int id;
     private String username;
     private boolean isAdmin;
+    private boolean isEnabled;
+
+    public boolean isEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
+    }
 
     public int getId() {
         return id;
