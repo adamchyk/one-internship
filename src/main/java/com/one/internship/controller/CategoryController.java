@@ -4,7 +4,6 @@ import com.one.internship.entity.Category;
 import com.one.internship.entity.User;
 import com.one.internship.model.CategoryInfo;
 import com.one.internship.model.CreateCategoryRequest;
-import com.one.internship.model.UserInfo;
 import com.one.internship.repository.CategoryRepository;
 import com.one.internship.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,7 @@ public class CategoryController {
     public List<CategoryInfo> getCategories() {
         List<CategoryInfo> categoryInfos = new ArrayList<>();
         List<Category> categoryList = categoryRepository.findAll();
-        for (int i = 0; i < categoryList.size(); i++){
+        for (int i = 0; i < categoryList.size(); i++) {
             CategoryInfo categoryInfo = new CategoryInfo();
             categoryInfo.setId(categoryList.get(i).getCategoryId());
             categoryInfo.setName(categoryList.get(i).getName());

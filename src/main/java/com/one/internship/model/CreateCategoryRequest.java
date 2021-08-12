@@ -1,7 +1,7 @@
 package com.one.internship.model;
 
 public class CreateCategoryRequest {
-    private Integer ownerId;
+    private Integer ownerId; //??
     private String name;
 
     public Integer getOwnerId() {
