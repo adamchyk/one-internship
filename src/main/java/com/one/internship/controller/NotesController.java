@@ -10,6 +10,7 @@ import com.one.internship.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class NotesController {
     private CategoryRepository categoryRepository;
 
     @GetMapping("/notes")
-    public List<NoteInfo> getNotes() {
+    public List<NoteInfo> getNotes(@RequestParam Integer categoryId, @RequestParam String noteContains, Principal principal) {
         List<NoteInfo> noteInfos = new ArrayList<>();
         List<Note> noteList = noteRepository.findAll();
         for (int i = 0; i < noteList.size(); i++){
