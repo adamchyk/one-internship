@@ -9,6 +9,7 @@ import com.one.internship.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,16 +37,16 @@ public class CategoryController {
     }
 
     @PostMapping("/categories")
-    public void addCategorys(@RequestBody CreateCategoryRequest category) {
+    public void addCategory(@RequestBody CreateCategoryRequest category, Principal principal) {
         Category newCategory = new Category();
         newCategory.setName(category.getName());
-        User u = userRepository.findById(category.getOwnerId()).get();
+        User u = userRepository.findByUsername(principal.getName()).get();
         newCategory.setOwner(u);
         categoryRepository.save(newCategory);
     }
 
     @DeleteMapping("/categories/{id}")
-    public void deleteCategorys(@PathVariable("id") Integer noteId) {
+    public void deleteCategory(@PathVariable("id") Integer noteId) {
         categoryRepository.deleteById(noteId);
     }
 
