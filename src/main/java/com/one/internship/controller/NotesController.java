@@ -40,7 +40,6 @@ public class NotesController {
             noteInfo.setId(n.getNoteId());
             noteInfo.setNote(n.getNote());
             noteInfo.setCategoryId(n.getCategory().getCategoryId());
-            noteInfo.setOwnerId(n.getOwner().getId());
             noteInfos.add(noteInfo);
         }
         return noteInfos;
@@ -68,7 +67,7 @@ public class NotesController {
     public ResponseEntity<MessageResponse> deleteNotes(@PathVariable("id") Integer noteId, Principal principal) {
         Note n = noteRepository.findById(noteId).get();
         User u = userRepository.findByUsername(principal.getName()).get();
-        if (!n.getOwner().getId().equals(u.getId())){
+        if (!n.getOwner().getId().equals(u.getId())) {
             return ResponseEntity.ok(new MessageResponse("This is not your note"));
         }
         noteRepository.deleteById(noteId);

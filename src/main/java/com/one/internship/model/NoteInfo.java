@@ -5,6 +5,7 @@ public class NoteInfo {
 
     private int id;
     private String note;
+    private Integer categoryId;
 
     public CategoryInfo getCategory() {
         return category;
@@ -31,5 +32,13 @@ public class NoteInfo {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 }
