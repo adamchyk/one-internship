@@ -5,24 +5,17 @@ public class NoteInfo {
 
     private int id;
     private String note;
-    private Integer ownerId;
-    private Integer categoryId;
 
-    public Integer getOwnerId() {
-        return ownerId;
+    public CategoryInfo getCategory() {
+        return category;
     }
 
-    public void setOwnerId(Integer ownerId) {
-        this.ownerId = ownerId;
+    public void setCategory(CategoryInfo category) {
+        this.category = category;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
-    }
+    private CategoryInfo category;
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
 
     public int getId() {
         return id;
