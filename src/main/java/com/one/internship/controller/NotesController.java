@@ -86,7 +86,7 @@ public class NotesController {
 
         Category c = categoryRepository.findById(req.getCategoryId()).get();
         if (!c.getOwner().getId().equals(u.getId())) {
-            return ResponseEntity.ok(new MessageResponse("This is not your category"));
+            return ResponseEntity.badRequest().body(new MessageResponse("This is not your category"));
         }
 
         newNote.setCategory(c);
@@ -100,7 +100,7 @@ public class NotesController {
         Note n = noteRepository.findById(noteId).get();
         User u = userRepository.findByUsername(principal.getName()).get();
         if (!n.getOwner().getId().equals(u.getId())){
-            return ResponseEntity.ok(new MessageResponse("This is not your note"));
+            return ResponseEntity.badRequest().body(new MessageResponse("This is not your note"));
         }
         noteRepository.deleteById(noteId);
         return ResponseEntity.ok(new MessageResponse("Note deleted"));

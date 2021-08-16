@@ -1,9 +1,11 @@
 package com.one.internship.controller;
 
 import com.one.internship.entity.User;
+import com.one.internship.model.ChangePasswordRequest;
 import com.one.internship.model.UserInfo;
 import com.one.internship.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -16,6 +18,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @GetMapping("/users")
     public List<UserInfo> getUsers() {
@@ -39,8 +44,17 @@ public class UserController {
     }
 
     @GetMapping("/me")
-    public UserInfo getUser(Principal principal){
+    public UserInfo getUser(Principal principal) {
         User user = userRepository.findByUsername(principal.getName()).get();
         return new UserInfo(user);
     }
+
+    @PostMapping("/password")
+    public void changePassword(@RequestBody ChangePasswordRequest req) {
+        User user = userRepository.findById(req.getUserId()).get();
+        String encodedPassword = passwordEncoder.encode(req.getNewPassword());
+        user.setPassword(encodedPassword);
+        userRepository.save(user);
+    }
+
 }
