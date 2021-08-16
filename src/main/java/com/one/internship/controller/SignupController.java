@@ -57,7 +57,7 @@ public class SignupController {
         User user = new User();
         user.setUsername(signupRequest.getUsername());
         user.setPassword(encoder.encode(signupRequest.getPassword()));
-        user.setIsAdmin(false);
+        user.setAdmin(false);
         user.setAccountEnabled(true);
         userRepository.save(user);
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
