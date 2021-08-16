@@ -9,5 +9,7 @@ import java.util.List;
 
 @Repository
 public interface NoteRepository extends JpaRepository<Note, Integer> {
-    List<Note>findByNoteContainingIgnoreCase(String note);
+
+    int countAllByOwnerIdAndCategoryCategoryId(Integer ownerId, Integer categoryId);
+
 }

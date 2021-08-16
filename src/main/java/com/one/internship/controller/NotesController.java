@@ -108,6 +108,12 @@ public class NotesController {
             return ResponseEntity.badRequest().body(new MessageResponse("This is not your note"));
         }
         noteRepository.deleteById(noteId);
+
+        int count = noteRepository.countAllByOwnerIdAndCategoryCategoryId(u.getId(), n.getCategory().getCategoryId());
+        if (count == 0) {
+            categoryRepository.deleteById(n.getCategory().getCategoryId());
+        }
+
         return ResponseEntity.ok(new MessageResponse("Note deleted"));
     }
 
