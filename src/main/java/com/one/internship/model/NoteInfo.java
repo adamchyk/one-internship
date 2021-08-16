@@ -3,18 +3,15 @@ package com.one.internship.model;
 
 import org.hibernate.validator.constraints.Length;
 
-
-import javax.validation.constraints.NotNull;
 public class NoteInfo {
 
     private int id;
 
-    @NotNull
     @Length(min = 1, max = 4000)
     private String note;
 
-    @NotNull
-    private Integer categoryId;
+    @Length(min = 2, max = 20)
+    private String categoryName;
 
 
     public int getId() {
@@ -33,15 +30,11 @@ public class NoteInfo {
         this.note = note;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getName() {
-        return getName();
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

@@ -42,7 +42,7 @@ public class NotesController {
     public List<NoteInfo> getNotes(@RequestParam(required = false) Integer categoryId,
                                    @RequestParam(required = false) String noteContains,
                                    Principal principal) {
-        List<NoteInfo> noteInfos = new ArrayList<>( );
+        List<NoteInfo> noteInfos = new ArrayList<>();
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Note> query = cb.createQuery(Note.class);
         Root<Note> noteRoot = query.from(Note.class);
@@ -70,7 +70,7 @@ public class NotesController {
             Note n = noteList.get(i);
             noteInfo.setId(n.getNoteId());
             noteInfo.setNote(n.getNote());
-            noteInfo.setCategoryId(n.getCategory().getCategoryId());
+            noteInfo.setCategoryName(n.getCategory().getName());
             noteInfos.add(noteInfo);
         }
         return noteInfos;
@@ -84,9 +84,13 @@ public class NotesController {
         User u = userRepository.findByUsername(principal.getName()).get();
         newNote.setOwner(u);
 
-
-        Category c = categoryRepository.findByOwnerIdAndName(u.getId(), req.getName());
-        if (!c.getOwner().getId().equals(u.getId())) {
+        Category c = categoryRepository.findByOwnerIdAndName(u.getId(), req.getCategoryName());
+        if (c == null) {
+            c = new Category();
+            c.setOwner(u);
+            c.setName(req.getCategoryName());
+            c = categoryRepository.save(c);
+        } else if (!c.getOwner().getId().equals(u.getId())) {
             return ResponseEntity.badRequest().body(new MessageResponse("This is not your category"));
         }
 
@@ -100,7 +104,7 @@ public class NotesController {
     public ResponseEntity<MessageResponse> deleteNotes(@PathVariable("id") Integer noteId, Principal principal) {
         Note n = noteRepository.findById(noteId).get();
         User u = userRepository.findByUsername(principal.getName()).get();
-        if (!n.getOwner().getId().equals(u.getId())){
+        if (!n.getOwner().getId().equals(u.getId())) {
             return ResponseEntity.badRequest().body(new MessageResponse("This is not your note"));
         }
         noteRepository.deleteById(noteId);
