@@ -38,21 +38,7 @@ public class User {
         this.isAdmin = is_admin;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
-    }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
-
-    public boolean isAccountEnabled() {
-        return isAccountEnabled;
-    }
-
-    public void setAccountEnabled(boolean accountEnabled) {
-        isAccountEnabled = accountEnabled;
-    }
 
     public String getUsername() {
         return username;
