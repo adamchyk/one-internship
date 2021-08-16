@@ -17,6 +17,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +78,7 @@ public class NotesController {
 
 
     @PostMapping("/notes")
-    public ResponseEntity<MessageResponse> addNotes(@RequestBody NoteInfo req, Principal principal) {
+    public ResponseEntity<MessageResponse> addNotes(@Valid @RequestBody NoteInfo req, Principal principal) {
         Note newNote = new Note();
         newNote.setNote(req.getNote());
         User u = userRepository.findByUsername(principal.getName()).get();

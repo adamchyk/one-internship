@@ -1,10 +1,12 @@
 package com.one.internship.model;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.validation.constraints.NotBlank;
 
 public class SignupRequest {
 
-    @NotBlank
+    @Length(min = 3, max = 20)
     private String username;
 
     @NotBlank

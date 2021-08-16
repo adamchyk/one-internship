@@ -9,6 +9,7 @@ import com.one.internship.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class CategoryController {
     }
 
     @PostMapping("/category")
-    public void addCategory(@RequestBody CreateCategoryRequest category, Principal principal) {
+    public void addCategory(@Valid @RequestBody CreateCategoryRequest category, Principal principal) {
         Category newCategory = new Category();
         newCategory.setName(category.getName());
         User u = userRepository.findByUsername(principal.getName()).get();

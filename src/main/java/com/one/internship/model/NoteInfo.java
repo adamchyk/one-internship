@@ -1,10 +1,19 @@
 package com.one.internship.model;
 
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 public class NoteInfo {
 
     private int id;
+
+    @NotNull
+    @Length(min = 1, max = 4000)
     private String note;
+
+    @NotNull
     private Integer categoryId;
 
 

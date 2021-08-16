@@ -1,7 +1,16 @@
 package com.one.internship.model;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class LoginRequest {
+
+    @Length(min = 3, max = 20)
     private String username;
+
+    @NotBlank
     private String password;
 
     public String getUsername() {
