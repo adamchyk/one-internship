@@ -17,6 +17,10 @@ public class UserInfo {
         this.isEnabled = user.isAccountEnabled();
     }
 
+    public UserInfo() {
+
+    }
+
     public boolean isEnabled() {
         return isEnabled;
     }

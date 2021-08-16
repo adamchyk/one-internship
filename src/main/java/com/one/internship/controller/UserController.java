@@ -6,6 +6,7 @@ import com.one.internship.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class UserController {
     public List<UserInfo> getUsers() {
         List<UserInfo> userInfos = new ArrayList<>();
         List<User> usersList = userRepository.findAll();
-        for (int i = 0; i < usersList.size(); i++){
+        for (int i = 0; i < usersList.size(); i++) {
             UserInfo userInfo = new UserInfo();
             userInfo.setId(usersList.get(i).getId());
             userInfo.setUsername(usersList.get(i).getUsername());
@@ -39,5 +40,11 @@ public class UserController {
     @PostMapping("/users/{id}/disable")
     public void disableUser(@RequestBody User user) {
 
+    }
+
+    @GetMapping("/me")
+    public UserInfo getUser(Principal principal){
+        User user = userRepository.findByUsername(principal.getName()).get();
+        return new UserInfo(user);
     }
 }
