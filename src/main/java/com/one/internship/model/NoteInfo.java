@@ -7,16 +7,6 @@ public class NoteInfo {
     private String note;
     private Integer categoryId;
 
-    public CategoryInfo getCategory() {
-        return category;
-    }
-
-    public void setCategory(CategoryInfo category) {
-        this.category = category;
-    }
-
-    private CategoryInfo category;
-
 
     public int getId() {
         return id;

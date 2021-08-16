@@ -3,13 +3,10 @@ package com.one.internship.services;
 import com.one.internship.entity.User;
 import com.one.internship.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import static java.util.Arrays.asList;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -24,10 +21,12 @@ public class UserService implements UserDetailsService {
 
         String role = user.isIsAdmin() ? "ADMIN" : "USER";
 
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(),
-                asList(new SimpleGrantedAuthority(role)));
+        return org.springframework.security.core.userdetails.User.builder()
+                .username(user.getUsername())
+                .password(user.getPassword())
+                .disabled(!user.isAccountEnabled())
+                .authorities(role)
+                .build();
     }
 
 }
