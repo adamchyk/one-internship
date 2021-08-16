@@ -24,7 +24,7 @@ public class CategoryController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/category")
+    @GetMapping("/categories")
     public List<CategoryInfo> getCategories() {
         List<CategoryInfo> categoryInfos = new ArrayList<>();
         List<Category> categoryList = categoryRepository.findAll();
@@ -37,7 +37,7 @@ public class CategoryController {
         return categoryInfos;
     }
 
-    @PostMapping("/category")
+    @PostMapping("/categories")
     public void addCategory(@RequestBody CreateCategoryRequest category, Principal principal) {
         Category newCategory = new Category();
         newCategory.setName(category.getName());
