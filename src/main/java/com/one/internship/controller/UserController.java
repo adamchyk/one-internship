@@ -22,11 +22,7 @@ public class UserController {
         List<UserInfo> userInfos = new ArrayList<>();
         List<User> usersList = userRepository.findAll();
         for (int i = 0; i < usersList.size(); i++) {
-            UserInfo userInfo = new UserInfo();
-            userInfo.setId(usersList.get(i).getId());
-            userInfo.setUsername(usersList.get(i).getUsername());
-            userInfo.setAdmin(usersList.get(i).isIsAdmin());
-            userInfo.setEnabled(usersList.get(i).isAccountEnabled());
+            UserInfo userInfo = new UserInfo(usersList.get(i));
             userInfos.add(userInfo);
         }
         return userInfos;
