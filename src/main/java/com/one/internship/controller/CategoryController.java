@@ -38,14 +38,14 @@ public class CategoryController {
         return categoryInfos;
     }
 
-    @PostMapping("/categories")
-    public void addCategory(@Valid @RequestBody CreateCategoryRequest category, Principal principal) {
-        Category newCategory = new Category();
-        newCategory.setName(category.getName());
-        User u = userRepository.findByUsername(principal.getName()).get();
-        newCategory.setOwner(u);
-        categoryRepository.save(newCategory);
-    }
+//    @PostMapping("/categories")
+//    public void addCategory(@Valid @RequestBody CreateCategoryRequest category, Principal principal) {
+//        Category newCategory = new Category();
+//        newCategory.setName(category.getName());
+//        User u = userRepository.findByUsername(principal.getName()).get();
+//        newCategory.setOwner(u);
+//        categoryRepository.save(newCategory);
+//    }
 
     @DeleteMapping("/categories/{id}")
     public void deleteCategory(@PathVariable("id") Integer noteId) {

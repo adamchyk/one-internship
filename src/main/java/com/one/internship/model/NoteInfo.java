@@ -3,7 +3,7 @@ package com.one.internship.model;
 
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.Valid;
+
 import javax.validation.constraints.NotNull;
 public class NoteInfo {
 
@@ -39,5 +39,9 @@ public class NoteInfo {
 
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getName() {
+        return getName();
     }
 }

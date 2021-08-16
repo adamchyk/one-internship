@@ -84,7 +84,8 @@ public class NotesController {
         User u = userRepository.findByUsername(principal.getName()).get();
         newNote.setOwner(u);
 
-        Category c = categoryRepository.findById(req.getCategoryId()).get();
+
+        Category c = categoryRepository.findByOwnerIdAndName(u.getId(), req.getName());
         if (!c.getOwner().getId().equals(u.getId())) {
             return ResponseEntity.badRequest().body(new MessageResponse("This is not your category"));
         }
