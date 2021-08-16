@@ -1,12 +1,21 @@
 package com.one.internship.model;
 
 
+import com.one.internship.entity.User;
+
 public class UserInfo {
 
     private int id;
     private String username;
     private boolean isAdmin;
     private boolean isEnabled;
+
+    public UserInfo(User user){
+        this.id = user.getId();
+        this.username = user.getUsername();
+        this.isAdmin = user.isAdmin();
+        this.isEnabled = user.isAccountEnabled();
+    }
 
     public boolean isEnabled() {
         return isEnabled;
