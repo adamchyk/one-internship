@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class CategoryController {
 
     @Autowired
@@ -23,7 +24,7 @@ public class CategoryController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/categories")
+    @GetMapping("/category")
     public List<CategoryInfo> getCategories() {
         List<CategoryInfo> categoryInfos = new ArrayList<>();
         List<Category> categoryList = categoryRepository.findAll();
@@ -36,7 +37,7 @@ public class CategoryController {
         return categoryInfos;
     }
 
-    @PostMapping("/categories")
+    @PostMapping("/category")
     public void addCategory(@RequestBody CreateCategoryRequest category, Principal principal) {
         Category newCategory = new Category();
         newCategory.setName(category.getName());

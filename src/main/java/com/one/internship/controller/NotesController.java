@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class NotesController {
 
     @Autowired
@@ -40,7 +41,7 @@ public class NotesController {
     public List<NoteInfo> getNotes(@RequestParam(required = false) Integer categoryId,
                                    @RequestParam(required = false) String noteContains,
                                    Principal principal) {
-        List<NoteInfo> noteInfos = new ArrayList<>();
+        List<NoteInfo> noteInfos = new ArrayList<>( );
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Note> query = cb.createQuery(Note.class);
         Root<Note> noteRoot = query.from(Note.class);
@@ -63,7 +64,6 @@ public class NotesController {
 
         // add filtration by noteContains
         List<Note> noteList = em.createQuery(query).getResultList();
-
         for (int i = 0; i < noteList.size(); i++) {
             NoteInfo noteInfo = new NoteInfo();
             Note n = noteList.get(i);
@@ -74,6 +74,7 @@ public class NotesController {
         }
         return noteInfos;
     }
+
 
     @PostMapping("/notes")
     public ResponseEntity<MessageResponse> addNotes(@RequestBody NoteInfo req, Principal principal) {
