@@ -19,7 +19,7 @@ public class UserService implements UserDetailsService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new NullPointerException("User not found"));
 
-        String role = user.isIsAdmin() ? "ADMIN" : "USER";
+        String role = user.isAdmin() ? "ADMIN" : "USER";
 
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getUsername())

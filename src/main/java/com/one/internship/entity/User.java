@@ -30,30 +30,6 @@ public class User {
         this.id = id;
     }
 
-    public boolean isIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setIsAdmin(boolean is_admin) {
-        this.isAdmin = is_admin;
-    }
-
-    public boolean isAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
-
-    public boolean isAccountEnabled() {
-        return isAccountEnabled;
-    }
-
-    public void setAccountEnabled(boolean accountEnabled) {
-        isAccountEnabled = accountEnabled;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -70,4 +46,19 @@ public class User {
         this.password = password;
     }
 
+    public boolean isAccountEnabled() {
+        return isAccountEnabled;
+    }
+
+    public void setAccountEnabled(boolean accountEnabled) {
+        isAccountEnabled = accountEnabled;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
 }
