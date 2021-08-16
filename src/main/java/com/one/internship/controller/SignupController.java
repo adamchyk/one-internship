@@ -33,7 +33,7 @@ public class SignupController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @PostMapping("/api/login")
+    @PostMapping("/login")
     public UserInfo loginUser(@Valid @RequestBody LoginRequest loginRequest) {
         UsernamePasswordAuthenticationToken authReq
                 = new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword());
