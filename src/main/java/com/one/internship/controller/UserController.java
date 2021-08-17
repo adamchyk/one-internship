@@ -33,15 +33,15 @@ public class UserController {
         return userInfos;
     }
 
-    @PostMapping("/users/{id}/enable")
-    public void enableUser(@RequestBody User user) {
-
-    }
-
-    @PostMapping("/users/{id}/disable")
-    public void disableUser(@RequestBody User user) {
-
-    }
+//    @PostMapping("/users/{id}/enable")
+//    public void enableUser(@RequestBody User user) {
+//
+//    }
+//
+//    @PostMapping("/users/{id}/disable")
+//    public void disableUser(@RequestBody User user) {
+//
+//    }
 
     @GetMapping("/me")
     public UserInfo getUser(Principal principal) {
@@ -49,7 +49,7 @@ public class UserController {
         return new UserInfo(user);
     }
 
-    @PostMapping("/password")
+    @PostMapping("/users/password")
     public void changePassword(@RequestBody ChangePasswordRequest req) {
         User user = userRepository.findById(req.getUserId()).get();
         String encodedPassword = passwordEncoder.encode(req.getNewPassword());

@@ -1,16 +1,12 @@
 package com.one.internship.controller;
 
 import com.one.internship.entity.Category;
-import com.one.internship.entity.User;
 import com.one.internship.model.CategoryInfo;
-import com.one.internship.model.CreateCategoryRequest;
 import com.one.internship.repository.CategoryRepository;
 import com.one.internship.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
