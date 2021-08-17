@@ -10,7 +10,7 @@ public class UserInfo {
     private boolean isAdmin;
     private boolean isEnabled;
 
-    public UserInfo(User user){
+    public UserInfo(User user) {
         this.id = user.getId();
         this.username = user.getUsername();
         this.isAdmin = user.isAdmin();

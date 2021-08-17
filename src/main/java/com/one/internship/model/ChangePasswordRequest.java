@@ -1,14 +1,14 @@
 package com.one.internship.model;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class ChangePasswordRequest {
 
     @NotNull
     Integer userId;
 
-    @NotBlank
+    @Size(min = 2)
     String newPassword;
 
     public Integer getUserId() {

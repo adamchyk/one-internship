@@ -1,16 +1,16 @@
 package com.one.internship.model;
 
 
-import org.hibernate.validator.constraints.Length;
+import javax.validation.constraints.Size;
 
 public class NoteInfo {
 
     private int id;
 
-    @Length(min = 1, max = 4000)
+    @Size(min = 1, max = 4000)
     private String note;
 
-    @Length(min = 2, max = 20)
+    @Size(min = 2, max = 20)
     private String categoryName;
 
 
