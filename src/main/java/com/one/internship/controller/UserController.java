@@ -33,16 +33,6 @@ public class UserController {
         return userInfos;
     }
 
-//    @PostMapping("/users/{id}/enable")
-//    public void enableUser(@RequestBody User user) {
-//
-//    }
-//
-//    @PostMapping("/users/{id}/disable")
-//    public void disableUser(@RequestBody User user) {
-//
-//    }
-
     @GetMapping("/me")
     public UserInfo getUser(Principal principal) {
         User user = userRepository.findByUsername(principal.getName()).get();
