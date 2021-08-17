@@ -41,6 +41,7 @@ public class NotesController {
     @GetMapping("/notes")
     public List<NoteInfo> getNotes(@RequestParam(required = false) Integer categoryId,
                                    @RequestParam(required = false) String noteContains,
+                                   @RequestParam(required = false) Integer page,
                                    Principal principal) {
         List<NoteInfo> noteInfos = new ArrayList<>();
         CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -61,10 +62,17 @@ public class NotesController {
         if (noteContains != null && !noteContains.isBlank()) {
             predicates.add(cb.and(cb.like(noteRoot.get("note"), '%' + noteContains + '%')));
         }
-        query.select(noteRoot).where(predicates.toArray(new Predicate[0]));
+        query.select(noteRoot)
+                .where(predicates.toArray(new Predicate[0]));
 
-        // add filtration by noteContains
-        List<Note> noteList = em.createQuery(query).getResultList();
+        int pageSize = 5;
+        int offset = (page != null) ? pageSize * (page - 1) : 0;
+
+        List<Note> noteList = em.createQuery(query)
+                .setFirstResult(offset)
+                .setMaxResults(pageSize)
+                .getResultList();
+
         for (int i = 0; i < noteList.size(); i++) {
             NoteInfo noteInfo = new NoteInfo();
             Note n = noteList.get(i);
