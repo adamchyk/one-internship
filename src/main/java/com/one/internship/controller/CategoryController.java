@@ -6,7 +6,9 @@ import com.one.internship.model.CategoryInfo;
 import com.one.internship.repository.CategoryRepository;
 import com.one.internship.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -34,11 +36,6 @@ public class CategoryController {
             categoryInfos.add(categoryInfo);
         }
         return categoryInfos;
-    }
-
-    @DeleteMapping("/categories/{id}")
-    public void deleteCategory(@PathVariable("id") Integer noteId) {
-        categoryRepository.deleteById(noteId);
     }
 
 }
