@@ -58,7 +58,7 @@ public class UserController {
     }
 
     @PostMapping("/users/{userId}/enableDisable")
-    public void accountEnable(@RequestParam Integer userId) {
+    public void accountEnable(@PathVariable Integer userId) {
         User user = userRepository.findById(userId).get();
         if (user.isAccountEnabled()) {
             user.setAccountEnabled(false);
