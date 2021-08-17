@@ -5,7 +5,7 @@ import javax.validation.constraints.Size;
 
 public class NoteInfo {
 
-    private int id;
+    private Integer id;
 
     @Size(min = 1, max = 4000)
     private String note;
@@ -13,12 +13,11 @@ public class NoteInfo {
     @Size(min = 2, max = 20)
     private String categoryName;
 
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -37,4 +36,5 @@ public class NoteInfo {
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
+
 }

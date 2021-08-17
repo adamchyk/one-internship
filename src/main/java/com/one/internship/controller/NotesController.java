@@ -87,9 +87,17 @@ public class NotesController {
 
     @PostMapping("/notes")
     public ResponseEntity<MessageResponse> addNotes(@Valid @RequestBody NoteInfo req, Principal principal) {
-        Note newNote = new Note();
-        newNote.setNote(req.getNote());
         User u = userRepository.findByUsername(principal.getName()).get();
+
+        Note newNote = new Note();
+        if (req.getId() != null) {
+            newNote = noteRepository.findById(req.getId()).get();
+            if (!newNote.getOwner().getId().equals(u.getId())) {
+                return ResponseEntity.badRequest().body(new MessageResponse("This is not your note."));
+            }
+        }
+
+        newNote.setNote(req.getNote());
         newNote.setOwner(u);
 
         Category c = categoryRepository.findByOwnerIdAndName(u.getId(), req.getCategoryName());
